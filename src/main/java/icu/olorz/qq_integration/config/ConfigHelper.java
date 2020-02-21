@@ -16,7 +16,7 @@ public class ConfigHelper {
 
   public static void bakeClient(final ModConfig config) {}
 
-  public static void bakeServer(final ModConfig config) {
+  public static void bakeServer() {
     // 后端配置
     QQIntegrationConfig.groupId = ConfigHolder.SERVER.GROUP_ID.get();
     QQIntegrationConfig.groupName = ConfigHolder.SERVER.GROUP_NAME.get();

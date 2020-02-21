@@ -58,7 +58,7 @@ final class ServerConfig {
     GROUP_ID = builder.comment("群号").define("groupId", "");
     GROUP_NAME = builder.comment("群名称[展示用]").define("groupName", "服务姬");
     BACKEND_TYPE =
-        builder.comment("后端服务类型: 酷Q，Mirai").defineEnum("backendType", Constants.BACKEND_TYPE.MIRAI);
+        builder.comment("后端服务类型: 酷Q，Mirai").defineEnum("backendType", Constants.BACKEND_TYPE.COOLQ);
     builder.pop();
     // 酷Q
     builder.comment("酷Q Websocket 服务器配置").push(CATEGORY_WEBSOCKET);

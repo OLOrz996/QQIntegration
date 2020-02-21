@@ -10,12 +10,8 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
-import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.IOException;
 
 // @Mod.EventBusSubscriber(modid = QQIntegration.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventHandler {
@@ -24,20 +20,6 @@ public class ModEventHandler {
 
   private static final Logger LOGGER =
       LogManager.getLogger(QQIntegration.MODID + " Mod Event Subscriber");
-
-  @SubscribeEvent
-  public void serverSetup(final FMLDedicatedServerSetupEvent event) {
-    LOGGER.debug("QQ Integration setup!");
-    QQIntegration.getQqAdopter().startProxy();
-  }
-
-  @SubscribeEvent
-  public void serverStopping(FMLServerStoppingEvent event)
-      throws IOException, InterruptedException {
-    if (QQIntegration.getQqAdopter() != null) {
-      QQIntegration.getQqAdopter().stopProxy();
-    }
-  }
 
   /*当配置变更时调用此方法*/
   @SubscribeEvent
@@ -49,7 +31,8 @@ public class ModEventHandler {
     //   LOGGER.debug("Baked client config");
     // } else
     if (config.getSpec() == ConfigHolder.SERVER_SPEC) {
-      ConfigHelper.bakeServer(config);
+      // ConfigHelper.bakeServer(config);
+      ConfigHelper.bakeServer();
       LOGGER.debug("Baked server config");
     }
   }
@@ -58,7 +41,7 @@ public class ModEventHandler {
   public void onServerChat(ServerChatEvent event) {
     String message = msgForIns.filterMCMessage(event.getMessage());
     if (message != null) {
-      QQIntegration.getQqAdopter()
+      QQIntegration.getQqProxy()
           .sendMessage(msgForIns.fromMC(event.getPlayer().getName().getString(), message));
     }
   }
@@ -70,7 +53,7 @@ public class ModEventHandler {
         && !(event.getEntityLiving() instanceof FakePlayer)
         && !event.getEntity().world.isRemote) {
       PlayerEntity player = (PlayerEntity) event.getEntityLiving();
-      QQIntegration.getQqAdopter()
+      QQIntegration.getQqProxy()
           .sendMessage(
               msgForIns.death(
                   player.getName().getString(),
@@ -81,7 +64,7 @@ public class ModEventHandler {
   @SubscribeEvent
   public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
     if (QQIntegrationConfig.moduleJoinLeave) {
-      QQIntegration.getQqAdopter()
+      QQIntegration.getQqProxy()
           .sendMessage(msgForIns.join(event.getPlayer().getName().getString()));
     }
   }
@@ -89,7 +72,7 @@ public class ModEventHandler {
   @SubscribeEvent
   public void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
     if (QQIntegrationConfig.moduleJoinLeave) {
-      QQIntegration.getQqAdopter()
+      QQIntegration.getQqProxy()
           .sendMessage(msgForIns.leave(event.getPlayer().getName().getString()));
     }
   }
