@@ -1,11 +1,13 @@
 package icu.olorz.qq_integration.core;
 
+import icu.olorz.qq_integration.Constants;
 import icu.olorz.qq_integration.QQIntegration;
 import icu.olorz.qq_integration.api.IMinecraftAdapter;
 import icu.olorz.qq_integration.api.IQQBackend;
 import icu.olorz.qq_integration.api.IQQProxy;
 import icu.olorz.qq_integration.config.QQIntegrationConfig;
 import icu.olorz.qq_integration.core.qqBackend.CoolQWSServer;
+import icu.olorz.qq_integration.core.qqBackend.MiraiBot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,22 +24,21 @@ public class QQProxy implements IQQProxy {
 
   public QQProxy(IMinecraftAdapter mcAdapter) {
     // 创建后端服务对象
-    // if (QQIntegrationConfig.backendType == Constants.BACKEND_TYPE.COOLQ) {
-    //   LOGGER.debug(
-    //       "CoolQServer host port: " + QQIntegrationConfig.host + " " +
-    // QQIntegrationConfig.port);
-    //   this.backendInstance =
-    //       new CoolQWSServer(
-    //           new InetSocketAddress(QQIntegrationConfig.host, QQIntegrationConfig.port), this);
-    // } else if (QQIntegrationConfig.backendType == Constants.BACKEND_TYPE.MIRAI) {
-    //   LOGGER.debug("MiraiBot 初始化");
-    //   this.backendInstance = new MiraiBot(this);
-    // } else {
-    //   this.backendInstance = new MiraiBot(this);
-    // }
-    this.backendInstance =
-        new CoolQWSServer(
-            new InetSocketAddress(QQIntegrationConfig.host, QQIntegrationConfig.port), this);
+    if (QQIntegrationConfig.backendType == Constants.BACKEND_TYPE.COOLQ) {
+      LOGGER.debug(
+          "CoolQServer host port: " + QQIntegrationConfig.host + " " + QQIntegrationConfig.port);
+      this.backendInstance =
+          new CoolQWSServer(
+              new InetSocketAddress(QQIntegrationConfig.host, QQIntegrationConfig.port), this);
+    } else if (QQIntegrationConfig.backendType == Constants.BACKEND_TYPE.MIRAI) {
+      LOGGER.debug("MiraiBot 初始化");
+      this.backendInstance = new MiraiBot(this);
+    } else {
+      this.backendInstance = new MiraiBot(this);
+    }
+    // this.backendInstance =
+    //     new CoolQWSServer(
+    //         new InetSocketAddress(QQIntegrationConfig.host, QQIntegrationConfig.port), this);
     this.mcAdapter = mcAdapter;
   }
 

@@ -6,7 +6,6 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.4"
     }
 }
 
@@ -14,9 +13,14 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-apply plugin: 'com.github.johnrengelman.shadow'
 
-version = '1.0'
+repositories {
+    maven { url = 'https://files.minecraftforge.net/maven' }
+    jcenter()
+    mavenCentral()
+}
+
+version = '1.1'
 group = 'icu.olorz.qq_integration' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'qq_integration'
 
@@ -88,49 +92,17 @@ minecraft {
     }
 }
 
-configurations {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    shadow
-    compile.extendsFrom(shadow)
-}
-
-shadowJar {
-    baseName = 'qq_integration'
-    classifier = '1.0'
-    configurations = [project.configurations.shadow]
-//    relocate 'org.slf4j', 'qqshadow.org.slf4j'
-//    relocate 'org.json', 'qqshadow.org.json'
-//    relocate 'org.intellij', 'qqshadow.org.intellij'
-//    relocate 'org.jetbrains', 'qqshadow.org.jetbrains'
-//    relocate 'org.bouncycastle', 'qqshadow.org.bouncycastle'
-//    relocate 'org.java_websocket', 'qqshadow.org.java_websocket'
-}
-
 dependencies {
     minecraft 'net.minecraftforge:forge:1.14.4-28.2.0'
-    shadow("org.java-websocket:Java-WebSocket:1.4.0")
-    shadow("org.json:json:20190722")
-//    shadow("net.mamoe:mirai-core-qqandroid-jvm:0.16.0")
-//    shadow("net.mamoe:mirai-japt:1.0.1")
+    compile("org.java-websocket:Java-WebSocket:1.4.0")
+    compile("org.json:json:20190722")
+    compile("net.mamoe:mirai-core-qqandroid-jvm:0.16.0")
+    compile("net.mamoe:mirai-japt:1.0.1")
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
     testCompileOnly 'org.projectlombok:lombok:1.18.12'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
-}
-
-reobf {
-    shadowJar {
-        dependsOn tasks.createMcpToSrg
-        mappings = tasks.createMcpToSrg.outputs.files.singleFile
-    }
-}
-
-artifacts {
-    archives tasks.shadowJar
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -153,20 +125,20 @@ jar {
 // we define a custom artifact that is sourced from the reobfJar output task
 // and then declare that to be published
 // Note you'll need to add a repository here
-//def reobfFile = file("$buildDir/reobfJar/output.jar")
-//def reobfArtifact = artifacts.add('default', reobfFile) {
-//    type 'jar'
-//    builtBy 'reobfJar'
-//}
-//publishing {
-//    publications {
-//        mavenJava(MavenPublication) {
-//            artifact reobfArtifact
-//        }
-//    }
-//    repositories {
-//        maven {
-//            url "file:///${project.projectDir}/mcmodsrepo"
-//        }
-//    }
-//}
+def reobfFile = file("$buildDir/reobfJar/output.jar")
+def reobfArtifact = artifacts.add('default', reobfFile) {
+    type 'jar'
+    builtBy 'reobfJar'
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact reobfArtifact
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
