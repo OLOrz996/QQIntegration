@@ -3,7 +3,7 @@ package icu.olorz.QQIntegration;
 /** @author OLOrz */
 public class Constants {
   public static final String OWNER = "owner";
-  public static final String ADMIN = "admin";
+  public static final String ADMIN = "administrator";
   public static final String MEMBER = "member";
 
   // Mod 指令
