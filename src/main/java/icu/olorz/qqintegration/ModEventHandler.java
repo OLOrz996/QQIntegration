@@ -1,8 +1,8 @@
-package icu.olorz.qq_integration;
+package icu.olorz.qqintegration;
 
-import icu.olorz.qq_integration.config.ConfigHelper;
-import icu.olorz.qq_integration.config.ConfigHolder;
-import icu.olorz.qq_integration.config.QQIntegrationConfig;
+import icu.olorz.qqintegration.config.ConfigHelper;
+import icu.olorz.qqintegration.config.ConfigHolder;
+import icu.olorz.qqintegration.config.QQIntegrationConfig;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.ServerChatEvent;

@@ -1,4 +1,4 @@
-package icu.olorz.qq_integration.api;
+package icu.olorz.qqintegration.api;
 
 // 后端接口
 public interface IQQBackend {

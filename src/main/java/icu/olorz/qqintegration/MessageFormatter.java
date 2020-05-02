@@ -1,6 +1,6 @@
-package icu.olorz.qq_integration;
+package icu.olorz.qqintegration;
 
-import icu.olorz.qq_integration.config.QQIntegrationConfig;
+import icu.olorz.qqintegration.config.QQIntegrationConfig;
 
 public class MessageFormatter {
 

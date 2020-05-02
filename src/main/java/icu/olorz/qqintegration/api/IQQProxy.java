@@ -1,4 +1,4 @@
-package icu.olorz.qq_integration.api;
+package icu.olorz.qqintegration.api;
 
 // 代理后端不同的实现方式
 public interface IQQProxy {

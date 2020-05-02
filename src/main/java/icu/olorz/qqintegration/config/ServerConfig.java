@@ -1,6 +1,6 @@
-package icu.olorz.qq_integration.config;
+package icu.olorz.qqintegration.config;
 
-import icu.olorz.qq_integration.Constants;
+import icu.olorz.qqintegration.Constants;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 final class ServerConfig {

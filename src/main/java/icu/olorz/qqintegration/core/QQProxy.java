@@ -1,13 +1,13 @@
-package icu.olorz.qq_integration.core;
+package icu.olorz.qqintegration.core;
 
-import icu.olorz.qq_integration.Constants;
-import icu.olorz.qq_integration.QQIntegration;
-import icu.olorz.qq_integration.api.IMinecraftAdapter;
-import icu.olorz.qq_integration.api.IQQBackend;
-import icu.olorz.qq_integration.api.IQQProxy;
-import icu.olorz.qq_integration.config.QQIntegrationConfig;
-import icu.olorz.qq_integration.core.qqBackend.CoolQWSServer;
-import icu.olorz.qq_integration.core.qqBackend.MiraiBot;
+import icu.olorz.qqintegration.Constants;
+import icu.olorz.qqintegration.QQIntegration;
+import icu.olorz.qqintegration.api.IMinecraftAdapter;
+import icu.olorz.qqintegration.api.IQQBackend;
+import icu.olorz.qqintegration.api.IQQProxy;
+import icu.olorz.qqintegration.config.QQIntegrationConfig;
+import icu.olorz.qqintegration.core.qqBackend.CoolQWSServer;
+import icu.olorz.qqintegration.core.qqBackend.MiraiBot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -42,6 +42,7 @@ public class QQProxy implements IQQProxy {
     this.mcAdapter = mcAdapter;
   }
 
+  @Override
   public void startProxy() {
     if (proxyThread == null) {
       proxyThread =
@@ -56,6 +57,7 @@ public class QQProxy implements IQQProxy {
     }
   }
 
+  @Override
   public void stopProxy() {
     if (proxyThread.isAlive()) {
       backendInstance.stopBackend();
@@ -64,17 +66,21 @@ public class QQProxy implements IQQProxy {
     }
   }
 
+  @Override
   public void restartProxy() {
     stopProxy();
     startProxy();
   }
 
+  @Override
   public void statusProxy() {}
 
+  @Override
   public void sendMessage(String message) {
     backendInstance.msgToQQ(message);
   }
 
+  @Override
   public void receiveMessage(String message) {
     mcAdapter.sendMessage(message);
   }

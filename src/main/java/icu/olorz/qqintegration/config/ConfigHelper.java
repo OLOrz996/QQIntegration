@@ -1,8 +1,8 @@
-package icu.olorz.qq_integration.config;
+package icu.olorz.qqintegration.config;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
-import icu.olorz.qq_integration.QQIntegration;
+import icu.olorz.qqintegration.QQIntegration;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.logging.log4j.LogManager;

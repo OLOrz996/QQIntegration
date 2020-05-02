@@ -96,8 +96,9 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.14.4-28.2.0'
     compile("org.java-websocket:Java-WebSocket:1.4.0")
     compile("org.json:json:20190722")
-    compile("net.mamoe:mirai-core-qqandroid-jvm:0.16.0")
-    compile("net.mamoe:mirai-japt:1.0.1")
+    compile("net.mamoe:mirai-core:$miraiCoreVersion")
+    compile("net.mamoe:mirai-core-qqandroid:$miraiCoreVersion")
+    compile("net.mamoe:mirai-japt:$miraiJaptVersion")
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'

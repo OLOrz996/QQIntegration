@@ -1,4 +1,4 @@
-package icu.olorz.qq_integration.config;
+package icu.olorz.qqintegration.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 

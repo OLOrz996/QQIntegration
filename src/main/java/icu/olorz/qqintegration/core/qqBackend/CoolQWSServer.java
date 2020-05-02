@@ -1,9 +1,9 @@
-package icu.olorz.qq_integration.core.qqBackend;
+package icu.olorz.qqintegration.core.qqBackend;
 
-import icu.olorz.qq_integration.MessageFormatter;
-import icu.olorz.qq_integration.api.IQQBackend;
-import icu.olorz.qq_integration.api.IQQProxy;
-import icu.olorz.qq_integration.config.QQIntegrationConfig;
+import icu.olorz.qqintegration.MessageFormatter;
+import icu.olorz.qqintegration.api.IQQBackend;
+import icu.olorz.qqintegration.api.IQQProxy;
+import icu.olorz.qqintegration.config.QQIntegrationConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.java_websocket.WebSocket;
