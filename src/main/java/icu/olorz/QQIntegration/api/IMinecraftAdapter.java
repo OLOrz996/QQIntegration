@@ -1,4 +1,4 @@
-package icu.olorz.qqintegration.api;
+package icu.olorz.QQIntegration.api;
 
 import java.util.Set;
 

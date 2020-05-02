@@ -1,9 +1,9 @@
-package icu.olorz.qqintegration.core.qqBackend;
+package icu.olorz.QQIntegration.core.qqBackend;
 
-import icu.olorz.qqintegration.MessageFormatter;
-import icu.olorz.qqintegration.api.IQQBackend;
-import icu.olorz.qqintegration.api.IQQProxy;
-import icu.olorz.qqintegration.config.QQIntegrationConfig;
+import icu.olorz.QQIntegration.MessageFormatter;
+import icu.olorz.QQIntegration.api.IQQBackend;
+import icu.olorz.QQIntegration.api.IQQProxy;
+import icu.olorz.QQIntegration.config.QQIntegrationConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.java_websocket.WebSocket;
@@ -23,8 +23,6 @@ import java.util.Map;
 public class CoolQWSServer extends WebSocketServer implements IQQBackend {
 
   private static final Logger LOGGER = LogManager.getLogger();
-  // private WebSocket event;
-  // private WebSocket api;
   private IQQProxy qqProxyInstance;
   private MessageFormatter messageFormatter = new MessageFormatter();
 
@@ -109,13 +107,6 @@ public class CoolQWSServer extends WebSocketServer implements IQQBackend {
 
   @Override
   public void msgToQQ(String msg) {
-    // {
-    //     "action": "send_private_msg",
-    //     "params": {
-    //         "user_id": 123456,
-    //         "message": "你好"
-    //     }
-    // }
     JSONObject data = new JSONObject();
     JSONObject params = new JSONObject();
     data.put("action", "send_group_msg");

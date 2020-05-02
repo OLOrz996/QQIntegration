@@ -1,6 +1,6 @@
-package icu.olorz.qqintegration.config;
+package icu.olorz.QQIntegration.config;
 
-import icu.olorz.qqintegration.Constants;
+import icu.olorz.QQIntegration.Constants;
 
 public class QQIntegrationConfig {
 

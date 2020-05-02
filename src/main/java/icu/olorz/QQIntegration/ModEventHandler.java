@@ -1,8 +1,8 @@
-package icu.olorz.qqintegration;
+package icu.olorz.QQIntegration;
 
-import icu.olorz.qqintegration.config.ConfigHelper;
-import icu.olorz.qqintegration.config.ConfigHolder;
-import icu.olorz.qqintegration.config.QQIntegrationConfig;
+import icu.olorz.QQIntegration.config.ConfigHelper;
+import icu.olorz.QQIntegration.config.ConfigHolder;
+import icu.olorz.QQIntegration.config.QQIntegrationConfig;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.ServerChatEvent;
@@ -13,7 +13,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-// @Mod.EventBusSubscriber(modid = QQIntegration.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventHandler {
 
   private static MessageFormatter msgForIns = new MessageFormatter();
@@ -21,7 +20,7 @@ public class ModEventHandler {
   private static final Logger LOGGER =
       LogManager.getLogger(QQIntegration.MODID + " Mod Event Subscriber");
 
-  /*当配置变更时调用此方法*/
+  /** 当配置变更时调用此方法 */
   @SubscribeEvent
   public void onModConfigEvent(final ModConfig.ModConfigEvent event) {
     final ModConfig config = event.getConfig();

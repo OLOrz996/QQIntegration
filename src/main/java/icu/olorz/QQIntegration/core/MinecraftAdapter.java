@@ -1,6 +1,6 @@
-package icu.olorz.qqintegration.core;
+package icu.olorz.QQIntegration.core;
 
-import icu.olorz.qqintegration.api.IMinecraftAdapter;
+import icu.olorz.QQIntegration.api.IMinecraftAdapter;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;

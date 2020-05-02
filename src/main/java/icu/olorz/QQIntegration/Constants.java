@@ -1,4 +1,4 @@
-package icu.olorz.qqintegration;
+package icu.olorz.QQIntegration;
 
 /** @author OLOrz */
 public class Constants {

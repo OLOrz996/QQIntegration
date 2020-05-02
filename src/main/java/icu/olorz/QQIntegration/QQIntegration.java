@@ -1,10 +1,10 @@
-package icu.olorz.qqintegration;
+package icu.olorz.QQIntegration;
 
-import icu.olorz.qqintegration.api.IQQProxy;
-import icu.olorz.qqintegration.config.ConfigHelper;
-import icu.olorz.qqintegration.config.ConfigHolder;
-import icu.olorz.qqintegration.core.MinecraftAdapter;
-import icu.olorz.qqintegration.core.QQProxy;
+import icu.olorz.QQIntegration.api.IQQProxy;
+import icu.olorz.QQIntegration.config.ConfigHelper;
+import icu.olorz.QQIntegration.config.ConfigHolder;
+import icu.olorz.QQIntegration.core.MinecraftAdapter;
+import icu.olorz.QQIntegration.core.QQProxy;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraftforge.common.MinecraftForge;

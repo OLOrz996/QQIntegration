@@ -1,10 +1,9 @@
-package icu.olorz.qqintegration.core.qqBackend;
+package icu.olorz.QQIntegration.core.qqBackend.mirai;
 
-import icu.olorz.qqintegration.MessageFormatter;
-import icu.olorz.qqintegration.api.IQQBackend;
-import icu.olorz.qqintegration.api.IQQProxy;
-import icu.olorz.qqintegration.config.QQIntegrationConfig;
-import net.mamoe.mirai.Bot;
+import icu.olorz.QQIntegration.MessageFormatter;
+import icu.olorz.QQIntegration.api.IQQBackend;
+import icu.olorz.QQIntegration.api.IQQProxy;
+import icu.olorz.QQIntegration.config.QQIntegrationConfig;
 import net.mamoe.mirai.BotFactoryJvm;
 import net.mamoe.mirai.contact.Group;
 import net.mamoe.mirai.event.Listener;
@@ -21,7 +20,7 @@ public class MiraiBot implements IQQBackend {
   //     BlockingBot.newInstance(Long.parseLong(QQIntegrationConfig.qqId),
   // QQIntegrationConfig.qqPw);
   // 使用自定义的配置
-  private final Bot bot =
+  private final net.mamoe.mirai.Bot bot =
       BotFactoryJvm.newBot(
           Long.parseLong(QQIntegrationConfig.qqId),
           QQIntegrationConfig.qqPw,
@@ -37,7 +36,7 @@ public class MiraiBot implements IQQBackend {
   private Listener<GroupMessage> grouplistener;
   private IQQProxy qqProxyInstance;
   private Group group;
-  private MessageFormatter messageFormatter = new MessageFormatter();
+  private final MessageFormatter messageFormatter = new MessageFormatter();
 
   public MiraiBot(IQQProxy qqProxyInstance) {
     this.qqProxyInstance = qqProxyInstance;
@@ -57,7 +56,8 @@ public class MiraiBot implements IQQBackend {
                 String color =
                     messageFormatter.getColor(event.getPermission().toString().toLowerCase());
                 String player = event.getSenderName();
-                String msg = event.getMessage().toString();
+                String msg = event.getMessage().contentToString();
+                MiraiUtils.messageChainTransform(event.getMessage());
                 qqProxyInstance.receiveMessage(
                     messageFormatter.fromQQ(groupName, color, player, msg));
               }

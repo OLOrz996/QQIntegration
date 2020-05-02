@@ -1,6 +1,6 @@
-package icu.olorz.qqintegration;
+package icu.olorz.QQIntegration;
 
-import icu.olorz.qqintegration.config.QQIntegrationConfig;
+import icu.olorz.QQIntegration.config.QQIntegrationConfig;
 
 public class MessageFormatter {
 
@@ -51,7 +51,7 @@ public class MessageFormatter {
           return null;
         } else {
           if (QQIntegrationConfig.stripFilter) {
-            return message.substring(QQIntegrationConfig.filter.length(), message.length());
+            return message.substring(QQIntegrationConfig.filter.length());
           } else {
             return message;
           }

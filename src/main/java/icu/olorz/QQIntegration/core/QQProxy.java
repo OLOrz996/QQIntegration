@@ -1,19 +1,18 @@
-package icu.olorz.qqintegration.core;
+package icu.olorz.QQIntegration.core;
 
-import icu.olorz.qqintegration.Constants;
-import icu.olorz.qqintegration.QQIntegration;
-import icu.olorz.qqintegration.api.IMinecraftAdapter;
-import icu.olorz.qqintegration.api.IQQBackend;
-import icu.olorz.qqintegration.api.IQQProxy;
-import icu.olorz.qqintegration.config.QQIntegrationConfig;
-import icu.olorz.qqintegration.core.qqBackend.CoolQWSServer;
-import icu.olorz.qqintegration.core.qqBackend.MiraiBot;
+import icu.olorz.QQIntegration.Constants;
+import icu.olorz.QQIntegration.QQIntegration;
+import icu.olorz.QQIntegration.api.IMinecraftAdapter;
+import icu.olorz.QQIntegration.api.IQQBackend;
+import icu.olorz.QQIntegration.api.IQQProxy;
+import icu.olorz.QQIntegration.config.QQIntegrationConfig;
+import icu.olorz.QQIntegration.core.qqBackend.CoolQWSServer;
+import icu.olorz.QQIntegration.core.qqBackend.mirai.MiraiBot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.InetSocketAddress;
 
-// import icu.olorz.qq_integration.core.Mirai.MiraiBot;
 // 中间层，隔离MC与QQ后端程序
 public class QQProxy implements IQQProxy {
 
@@ -25,8 +24,8 @@ public class QQProxy implements IQQProxy {
   public QQProxy(IMinecraftAdapter mcAdapter) {
     // 创建后端服务对象
     if (QQIntegrationConfig.backendType == Constants.BACKEND_TYPE.COOLQ) {
-      LOGGER.debug(
-          "CoolQServer host port: " + QQIntegrationConfig.host + " " + QQIntegrationConfig.port);
+      // LOGGER.debug(
+      //     "CoolQServer host port: " + QQIntegrationConfig.host + " " + QQIntegrationConfig.port);
       this.backendInstance =
           new CoolQWSServer(
               new InetSocketAddress(QQIntegrationConfig.host, QQIntegrationConfig.port), this);
@@ -36,9 +35,6 @@ public class QQProxy implements IQQProxy {
     } else {
       this.backendInstance = new MiraiBot(this);
     }
-    // this.backendInstance =
-    //     new CoolQWSServer(
-    //         new InetSocketAddress(QQIntegrationConfig.host, QQIntegrationConfig.port), this);
     this.mcAdapter = mcAdapter;
   }
 
