@@ -5,7 +5,7 @@ import com.typesafe.config.ConfigObject;
 import com.typesafe.config.ConfigRenderOptions;
 import icu.olorz.QQIntegration.Constants;
 import icu.olorz.QQIntegration.api.IConfig;
-import org.apache.commons.compress.utils.IOUtils;
+import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -26,15 +26,6 @@ public class Config implements IConfig {
         ConfigFactory.load()
             .withFallback(ConfigFactory.parseFile(file))
             .withFallback(ConfigFactory.load("assets/QQIntegration/default.conf"));
-
-    // // Migration handler
-    // if (config.hasPath("discordchat.discord.channel")) {
-    //     String channel = config.getString("discordchat.discord.channel");
-    //     config = config.withoutPath("discordchat.discord.channel");
-    //     config = config.withValue("discordchat.discord.channels",
-    // ConfigValueFactory.fromAnyRef(Collections.singletonList(channel)));
-    // }
-
     save();
   }
 
@@ -69,7 +60,8 @@ public class Config implements IConfig {
 
   @Override
   public Constants.BACKEND_TYPE backendType() {
-    return Constants.BACKEND_TYPE.valueOf(config.getString("QQIntegration.backend.basic.backendType").toUpperCase());
+    return Constants.BACKEND_TYPE.valueOf(
+        config.getString("QQIntegration.backend.basic.backendType").toUpperCase());
   }
 
   @Override
@@ -164,7 +156,8 @@ public class Config implements IConfig {
 
   @Override
   public Constants.FILTER_MODE_CODE filterMode() {
-    return Constants.FILTER_MODE_CODE.valueOf(config.getString("QQIntegration.message.filter.filterMode"));
+    return Constants.FILTER_MODE_CODE.valueOf(
+        config.getString("QQIntegration.message.filter.filterMode"));
   }
 
   @Override
@@ -174,7 +167,8 @@ public class Config implements IConfig {
 
   @Override
   public Boolean moduleAchievements() {
-    return Boolean.parseBoolean(config.getString("QQIntegration.message.module.moduleAchievements"));
+    return Boolean.parseBoolean(
+        config.getString("QQIntegration.message.module.moduleAchievements"));
   }
 
   @Override
@@ -189,6 +183,7 @@ public class Config implements IConfig {
 
   @Override
   public Boolean moduleOnlineOffline() {
-    return Boolean.parseBoolean(config.getString("QQIntegration.message.module.moduleOnlineOffline"));
+    return Boolean.parseBoolean(
+        config.getString("QQIntegration.message.module.moduleOnlineOffline"));
   }
 }

@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 
-@Mod(modid = QQIntegration.MODID)
+@Mod(modid = QQIntegration.MODID, acceptableRemoteVersions = "*")
 public final class QQIntegration {
 
   public static final String MODID = "qq_integration";
@@ -37,7 +37,7 @@ public final class QQIntegration {
     }
 
     config = new Config(new File(configFile, "QQIntegration.conf"));
-    qqProxy = new QQProxy(new MinecraftAdapter(),config);
+    qqProxy = new QQProxy(new MinecraftAdapter(), config);
     MinecraftForge.EVENT_BUS.register(new ModEventHandler(config));
   }
 
