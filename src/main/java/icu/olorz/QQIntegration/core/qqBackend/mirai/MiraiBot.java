@@ -57,7 +57,7 @@ public class MiraiBot implements IQQBackend {
                     messageFormatter.getColor(event.getPermission().toString().toLowerCase());
                 String player = event.getSenderName();
                 String msg = event.getMessage().contentToString();
-                MiraiUtils.messageChainTransform(event.getMessage());
+                // TODO 增加对指令的支持
                 qqProxyInstance.receiveMessage(
                     messageFormatter.fromQQ(groupName, color, player, msg));
               }
